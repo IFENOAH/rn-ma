@@ -5,7 +5,6 @@ import { CATEGORIES } from "../data/fakedata"
 export const CategorySceen = ({ navigation }) => {
 
     const renderCategoryItem = (itemData) => {
-        
         const handlePressHandler = () => {
             navigation.navigate('Meal Overview', {
                 categoryId: itemData.item.id, 
