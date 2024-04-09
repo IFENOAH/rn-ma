@@ -21,7 +21,7 @@ export const MealOverviewScreen = ({ route, navigation }) => {
 
     const renderMealItem = (meal) => {
         return (
-            <MealItem 
+            <MealItem
                 id={meal.item.id}
                 title={meal.item.title} 
                 imageUrl={meal.item.imageUrl} 
