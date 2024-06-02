@@ -1,18 +1,26 @@
 import { useLayoutEffect } from "react";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native"
+import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from "../components/iconbutton";
 import { List } from "../components/list";
 import { MealDetail } from "../components/mealdetail";
 import { MEALS } from "../data/fakedata";
+import { addFavorite, removeFavorite } from "../store/redux/favorites";
 
 export const MealDetailScreen = ({ route, navigation }) => {
 
-    const mealId = route.params.mealId;
+    // const favoriteMealsContext = useContext(FavoritesContext);
 
-    const selectedMeal = MEALS.find((meal) => meal.id === mealId)
+    const dispatch = useDispatch();
+    const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids)
+
+    const mealId = route.params.mealId;
+    const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+    const mealIsFavorite = favoriteMealIds.includes(mealId);
 
     const favoriteHandler = () => {
-        console.log("liked")
+        if(mealIsFavorite) dispatch(removeFavorite({id: mealId}));
+        if(!mealIsFavorite) dispatch(addFavorite({id: mealId}));
     }
 
     useLayoutEffect(() => {
@@ -21,7 +29,7 @@ export const MealDetailScreen = ({ route, navigation }) => {
                 return (
                     <IconButton 
                         onPress={favoriteHandler}
-                        icon="star"
+                        icon={mealIsFavorite ? 'star' : 'star-outline'}
                         color="#fff"
                     />
                 )

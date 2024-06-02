@@ -1,5 +1,5 @@
 import { Image, Platform, Pressable, StyleSheet, Text, View } from "react-native"
-import { MealDetail } from "./mealdetail"
+import { MealDetail } from "../mealdetail"
 
 export const MealItem = ({ id, title, imageUrl, duration, complexity, affordability, navigation }) => {
 
@@ -19,7 +19,7 @@ export const MealItem = ({ id, title, imageUrl, duration, complexity, affordabil
                         <Image style={styles.imageStyle} source={{ uri: imageUrl }} />
                         <Text style = {styles.title}>{title}</Text>
                     </View>
-                    <MealDetail 
+                    <MealDetail
                         duration={duration}
                         complexity={complexity}
                         affordability={affordability}
